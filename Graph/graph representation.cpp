@@ -17,6 +17,24 @@ using namespace std;
 
 
 
+    graph_Imp(vector<int>v[],int a,int b)
+    {
+        v[a].pb(b);
+        v[b].pb(a);
+    }
+
+
+    graph_print(vector<int>v[],int n)
+    {
+        for(ll i=0;i<n;i++)
+        {
+            for(auto x:v[i])
+            {
+                cout<<"->"<<x;
+            }
+            cout<<endl;
+        }
+    }
 
 int main()
 {
@@ -25,7 +43,19 @@ int main()
 
     //here is my code start...
 
+     cout<<"Enter number of vertex in graph:"<<endl;
+     int n;
+     cin>>n;
+     vector<int>v[n];
 
+     graph_Imp(v,0,1);
+     graph_Imp(v,0,4);
+     graph_Imp(v,1,2);
+     graph_Imp(v,1,3);
+     graph_Imp(v,1,4);
+     graph_Imp(v,2,3);
+     graph_Imp(v,3,4);
+     graph_print(v,n);
 
 
 
