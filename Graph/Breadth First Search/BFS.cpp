@@ -2,76 +2,68 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-    #define   ll         long long int
-    #define   ull        unsigned long long int
-    #define   pb         push_back
-    #define   endl       "\n"
-    #define   mp         make_pair
-    #define   yes        cout<<"YES\n"
-    #define   no         cout<<"NO\n"
-    #define   tst        int t;cin>>t;
-    #define   all(x)     x.begin(),x.end()
-    #define   Read(x)    freopen(x,"r",stdin)
-    #define   Write(x)   freopen (x,"w",stdout
-    #define   erase_duplicates(x)     x.erase(unique(all(x)),x.end());
-    #define MAXL (ll)(1e18)
-    template<typename T>
-
-    class graph{
-        map<int,list<int>>l;
-    public:
-        void addedge(int u,int v)
-        {
-            l[u].pb(v);
-            l[v].pb(u);
-        }
-        void bfs(int srt)
-        {
-            queue<int>q;
-            q.push(srt);
-            map<int,int> visited;
-
-            visited[srt]=true;
-            while(!q.empty())
-            {
-                int node=q.front();
-                q.pop();
-                cout<<"->"<<node;
-                for(auto var:l[node])
-                {
-                    if(!visited[var])
-                    {
-                        q.push(var);
-                        visited[var]=true;
-                    }
-                }
-            }
-
-        }
-    };
+#define   ll         long long int
+#define   ull        unsigned long long int
+#define   pd         push_back
+#define   endl       "\n"
+#define   mp         make_pair
+#define   yes        cout<<"YES\n"
+#define   no         cout<<"NO\n"
+#define   tst        int t;cin>>t;
+#define   all(x)     x.begin(),x.end()
+#define   Read(x)    freopen(x,"r",stdin)
+#define   Write(x)   freopen (x,"w",stdout
+#define   erase_duplicates(x)     x.erase(unique(all(x)),x.end());
 
 
 
 int main()
 {
+#ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+#endif
+
+
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
-    //here is my code start...
-    int n;
-    cin>>n;
-    cout<<"Enter the vertex want to start for bfs: "<<endl;
-    graph<int>g;
-    g.addedge(0,1);
-    g.addedge(0,3);
-    g.addedge(1,2);
-    g.addedge(3,2);
-    g.addedge(3,4);
-    g.addedge(4,5);
+    vector<int> adj[100];
+    int vis[100] = {0};
 
 
+    int n, m;
+    // cout << "Enter number of vertex & edge: " << endl;
+    cin >> n >> m;
 
-    g.bfs(n);
+    for (int i = 0; i < m; ++i)
+    {
+        int x, y;
+        cin >> x >> y;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+    }
+    queue<int>q;
+    q.push(1);
+    vis[1] = 1;
+
+    while (!q.empty())
+    {
+        int node = q.front();
+        q.pop();
+        cout << node << endl;
+
+        vector<int>::iterator it;
+        for (it = adj[node].begin(); it != adj[node].end(); it++)
+        {
+            if (!vis[*it])
+            {
+                q.push(*it);
+                vis[*it] = 1;
+            }
+        }
+
+    }
 
 
     return 0;
